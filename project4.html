@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Navigate - Free Bootstrap 4 Template by Colorlib</title>
+    <title>AI: "Hierarchical Pathfinding</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -31,7 +31,7 @@
     <nav id="colorlib-main-nav" class="border" role="navigation">
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
       <div class="js-fullheight colorlib-table">
-        <div class="img" style="background-image: url(images/bg_2.jpg);"></div>
+        <div class="img" style="background-image: url(images/deferred.jpg);"></div>
         <div class="colorlib-table-cell js-fullheight">
           <div class="row no-gutters">
             <div class="col-md-12 text-center">
@@ -52,7 +52,7 @@
     <div id="colorlib-page">
       <header>
         <div class="colorlib-navbar-brand text-center">
-          <h1 class="colorlib-logo">#01 Advanced Graphics: Deferred Shading</h1>
+          <h1 class="colorlib-logo">AI: "Hierarchical Pathfinding</h1>
         </div>
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       </header>
@@ -78,14 +78,10 @@
 					<div class="row">
 						<div class="col-md-12 heading-section ftco-animate mb-3">
 							<h2 class="mb-4">Course Description</h2>
-							<h5> CS 562 </h5>
-							<p>This courses main objective is to learn data structures, algorithms, and techniques concerned with rendering images more accurately and efficiently in interactive computer simulations and video game software.Topics include deferred shading and related multipass rendering techniques, physically based lighting, image based lighting,color spaces, global lighting and ambient occlusion, shadow map enhancements, surface reflection models (BRDFs), lighting effects, high-dynamic range, and other topics related to real-time vertex/pixel shader programming.</p>
-							<p>External libreries used:</p>
-							<ul>
-							<li>OpenGL API</li>
-							<li><a href="https://github.com/ocornut/imgui"> ImGui </a>(GUI)</li>
-							<li><a href="http://www.assimp.org/"> Assimp </a>(model loading only)</li>
-							</ul>
+							<h5> CS 380 </h5>
+							<p>This courses main objective is to learn data structures, algorithms, and techniques concerned with AI.</p>
+							<p>For this an external framework was provided.</p>
+							
 							<p>Most of the models used in the demos are copyrighted and are only used for demostration purposes.</p>
 							
 							
@@ -96,15 +92,29 @@
 				</div>
 				
 				<div class="col-md-8">
-					<h1> Deferred Shading pipeline </h1>
-					<p>In this assigment implement a complete new framework able to render in deferred.This rendering pipeline is able to mix between deferred renderables and forward renderables, as well as multiple render passes to apply postprocess effects.</p>
+					<h1> Hierarchical pathfinding </h1>
+					<p>In almost every game there are moving actors, enemies, players, NPC…. All those actors must follow a path, sometimes the path has been previously scripted, but most of the times, due to the environmental changes of the map during runtime, the precomputed path has been obstructed or is no longer accessible. Here is when pathfinding comes into scene.</p>
 					<div class="row">
 						<div class="col-md-12">	
 							<div class="portfolio ftco-animate">								
-								<img src="images/G-Buffer.jpg" class="img-fluid" alt="Colorlib Template">
+								<img src="images/Hierachical_Pathfinding/SampleImage2Cluster.png" class="img-fluid" alt="Colorlib Template">
 							</div>
 						</div>
 					</div>
+					<p>When we refer to pathfinding algorithms in games, we are mostly referring to A* search algorithm or any of its specific implementations. When applied to small maps, A* algorithm can be fast and memory consuming, but when applied to large maps with multiple moving actors, the pathfinding time becomes a limiting factor.</p>
+
+					<p>Most of the times we the actor will not reach the end of the path, due to a strategy change, the actor has been killed or whatever reason. It this case, most of the path calculus will be wasted, and we cannot afford to waste those valuable processor cycles. To avoid this, we will compute the path piece by piece, instead of the full path in one call. We will abstract the map into a group of smaller linked clusters or regions. We will compute a pre-path among the linked clusters, with almost no effort, since the search space will be much smaller, then we will compute the specific path inside each cluster when we are close to it. This way no calculus is wasted, and makes the algorithm also suitable for dynamic maps. We will get our actor moving as soon as we click, and during his way to the objective, we could easily have recomputed the abstract path if needed and the specific path inside the new clusters.
+
+					<div class="row">
+						<div class="col-md-12">	
+							<div class="portfolio ftco-animate">								
+								<img src="images/Hierachical_Pathfinding/SampleImage1.png" class="img-fluid" alt="Colorlib Template">
+							</div>
+						</div>
+					</div>
+
+					<p>This hierarchy can have any number of levels, making it easily scalable to even larger problems or bigger search spaces. The more levels our hierarchy has, the more expensive in memory our algorithm will be in pursuit of smaller search effort.</p>
+					
 					
 					
 					
